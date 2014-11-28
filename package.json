@@ -1,0 +1,10 @@
+{
+  "name": "example-project",
+  "version": "0.1.0",
+  "devDependencies": {
+    "coffee-script": "latest"
+  },
+  "dependencies": {
+    "mustache": "~0.8.2"
+  }
+}
