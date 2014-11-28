@@ -52,7 +52,7 @@ install = (callback) ->
 
 # archive: create a zip archive from the build
 archive = (callback) ->
-    zip_file = "#{ identifier }.zip"
+    zip_file = "#{ identifier.split('.').pop() }.zip"
 
     # go to build dir
     process.chdir "#{ build_root_dir }/"
