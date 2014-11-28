@@ -7,7 +7,8 @@ file = 'PythonRequestsCodeGenerator.coffee'
 identifier = 'com.luckymarmot.PawExtensions.PythonRequestsCodeGenerator'
 
 extensions_dir = "#{ process.env.HOME }/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/"
-build_dir = "build/#{ identifier }"
+build_root_dir = "build"
+build_dir = "#{ build_root_dir }/#{ identifier }"
 
 # compile CoffeeScript
 build_coffee = (callback) ->
@@ -51,7 +52,16 @@ install = (callback) ->
 
 # archive: create a zip archive from the build
 archive = (callback) ->
-    zip = spawn 'zip', ["build/#{ identifier }.zip", "build/#{ identifier }/"]
+    zip_file = "#{ identifier }.zip"
+
+    # go to build dir
+    process.chdir "#{ build_root_dir }/"
+
+    # delete any previous zip
+    fs.unlink zip_file
+
+    # zip
+    zip = spawn 'zip', ["-r", zip_file, "#{ identifier }/"]
     zip.stderr.on 'data', (data) ->
         process.stderr.write data.toString()
     zip.stdout.on 'data', (data) ->
