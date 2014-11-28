@@ -1,4 +1,3 @@
-{print} = require 'sys'
 {spawn} = require 'child_process'
 {ncp} = require 'ncp'
 mkdirp = require 'mkdirp'
@@ -16,7 +15,7 @@ build_coffee = (callback) ->
     coffee.stderr.on 'data', (data) ->
         process.stderr.write data.toString()
     coffee.stdout.on 'data', (data) ->
-        print data.toString()
+        process.stdout.write data.toString()
     coffee.on 'exit', (code) ->
         if code is 0
             callback?()
@@ -50,12 +49,29 @@ install = (callback) ->
         else
             callback?()
 
+# archive: create a zip archive from the build
+archive = (callback) ->
+    zip = spawn 'zip', ["build/#{ identifier }.zip", "build/#{ identifier }/"]
+    zip.stderr.on 'data', (data) ->
+        process.stderr.write data.toString()
+    zip.stdout.on 'data', (data) ->
+        process.stdout.write data.toString()
+    zip.on 'exit', (code) ->
+        if code is 0
+            callback?()
+        else
+            console.error "zip returned with error code: #{ code }"
+
 task 'build', ->
     build()
 
 task 'install', ->
     build () ->
         install()
+
+task 'archive', ->
+    build () ->
+        archive()
 
 task 'watch', ->
     spawn 'coffee', ['--watch', '--compile', file]
