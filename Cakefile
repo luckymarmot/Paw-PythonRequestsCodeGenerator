@@ -58,7 +58,8 @@ archive = (callback) ->
     process.chdir "#{ build_root_dir }/"
 
     # delete any previous zip
-    fs.unlink zip_file
+    if fs.existsSync zip_file
+        fs.unlinkSync zip_file
 
     # zip
     zip = spawn 'zip', ["-r", zip_file, "#{ identifier }/"]
