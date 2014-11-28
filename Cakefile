@@ -26,6 +26,7 @@ build_coffee = (callback) ->
 # copy files to build directory
 build_copy = () ->
     fs.writeFileSync "#{ build_dir }/README.md", fs.readFileSync("./README.md")
+    fs.writeFileSync "#{ build_dir }/LICENSE", fs.readFileSync("./LICENSE")
     fs.writeFileSync "#{ build_dir }/python.mustache", fs.readFileSync("./python.mustache")
     fs.writeFileSync "#{ build_dir }/mustache.js", fs.readFileSync("./node_modules/mustache/mustache.js")
     fs.writeFileSync "#{ build_dir }/URI.js", fs.readFileSync("./lib/URI.js")
