@@ -5,13 +5,11 @@ mkdirp = require 'mkdirp'
 
 file = 'PythonRequestsCodeGenerator.coffee'
 identifier = 'com.luckymarmot.PawExtensions.PythonRequestsCodeGenerator'
-extensions_dir = '~/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/'
 
-build = () ->
-    # mkdir build dir
-    build_dir = "build/#{ identifier }"
-    mkdirp build_dir
+extensions_dir = "#{ process.env.HOME }/Library/Containers/com.luckymarmot.Paw/Data/Library/Application Support/com.luckymarmot.Paw/Extensions/"
+build_dir = "build/#{ identifier }"
 
+build_coffee = (callback) ->
     # compile coffee script
     coffee = spawn 'coffee', ['-c', '-o', build_dir, file]
     coffee.stderr.on 'data', (data) ->
@@ -20,23 +18,41 @@ build = () ->
         print data.toString()
     coffee.on 'exit', (code) ->
         if code is 0
-            console.log '>>> Build successful'
+            callback?()
         else
-            console.log '!!! Build failed'
-    
-    # copy files
-    ncp 'node_modules/mustache/mustache.js', build_dir
-    
-    return true
+            console.error "Build failed with error: #{ code }"
 
-install = () ->
-    
+build_copy = (callback) ->
+    # copy files to build/ directory
+    ncp 'node_modules/mustache/mustache.js', build_dir, (err) ->
+        if err
+            console.error err
+        else
+            callback?()
+
+build = (callback) ->
+    # mkdir build dir
+    mkdirp build_dir, (err) ->
+        if err
+            console.error err
+        else
+            build_coffee () ->
+                build_copy () ->
+                    callback?()
+
+install = (callback) ->
+    ncp build_dir, "#{ extensions_dir }/#{ identifier }", (err) ->
+        if err
+            console.error err
+        else
+            callback?()
 
 task 'build', ->
     build()
-    
+
 task 'install', ->
-    build() and install()
+    build () ->
+        install()
 
 task 'watch', ->
     spawn 'coffee', ['--watch', '--compile', file]
