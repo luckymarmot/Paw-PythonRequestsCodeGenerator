@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/LuckyMarmot/Paw-PythonRequestsCodeGenerator.svg?branch=master)](https://travis-ci.org/LuckyMarmot/Paw-PythonRequestsCodeGenerator)
+
 #Python + Requests Code Generator (Paw Extension)
 
 This a Paw Extension that generates code for Python using the [Requests](http://docs.python-requests.org/en/latest/) library.
