@@ -76,6 +76,10 @@ archive = (callback) ->
 task 'build', ->
     build()
 
+task 'test', ->
+    build () ->
+        # no test to run
+
 task 'install', ->
     build () ->
         install()
