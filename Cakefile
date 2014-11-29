@@ -89,4 +89,11 @@ task 'archive', ->
         archive()
 
 task 'watch', ->
-    spawn 'coffee', ['--watch', '--compile', file]
+    # find all files in directory
+    for filename in fs.readdirSync '.'
+        # only watch non-hidden files
+        if not filename.match(/^\./) and fs.lstatSync("./#{ filename }").isFile()
+            fs.watchFile "./#{ filename }", {persistent:true, interval:500}, (_event, _filename) ->
+                # when a file is changed, build and install
+                build () ->
+                    install()
