@@ -1,14 +1,19 @@
 language: node_js
 node_js:
-- '0.10'
-before_script: ./node_modules/.bin/cake build
+  - '0.10'
 before_install:
-- npm install coffee-script
+  - npm install coffee-script
+before_script:
+  - ./node_modules/.bin/cake build
+script:
+  - ./node_modules/.bin/cake test
 deploy:
   provider: releases
   api_key:
     secure: hiPWH3ob7CqBbJbBMxc1yroCVOkXRkdu6c5639BEeqq9H4vbL4DiN2ermIht1i8RvdLQgwfZ93VcEE5NHihjNuoKFZ2wZBawRz6eTuuWhukV4/dU8dfLg2mVuWSs2mvV55iWcDfLEWkZ3HdBNLwCtebXvuHiXBHLvpMThCJI2gs=
-  file: build/com.luckymarmot.PawExtensions.PythonRequestsCodeGenerator.zip
+  file: build/PythonRequestsCodeGenerator.zip
+  skip_cleanup: true
   on:
+    tags: true
+    all_branches: true
     repo: LuckyMarmot/Paw-PythonRequestsCodeGenerator
-    branch: releases
