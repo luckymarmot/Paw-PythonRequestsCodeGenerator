@@ -10,6 +10,10 @@ This Paw Extension is released under the [MIT License](LICENSE). Feel free to fo
 
 Copyright © 2014 Paw Inc.
 
+##Contributors
+
+See [Contributors](https://github.com/LuckyMarmot/Paw-PythonRequestsCodeGenerator/graphs/contributors).
+
 ##Credits
 
 * [Mustache.js](https://github.com/janl/mustache.js/), also released under the MIT License

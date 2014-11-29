@@ -1,5 +1,5 @@
 {
-  "name": "example-project",
+  "name": "Paw-PythonRequestsCodeGenerator",
   "version": "0.1.0",
   "devDependencies": {
     "coffee-script": "latest",
