@@ -1,3 +1,4 @@
+# pip install requests
 import requests
 {{#body.has_json_body}}
 import json
@@ -47,6 +48,7 @@ def send_request():
             data = json.dumps({{{body.json_body_object}}})
             {{/body.has_json_body}}
         )
-        print('Response HTTP {status_code}'.format(status_code=r.status_code))
+        print('Response HTTP Status Code : {status_code}'.format(status_code=r.status_code))
+        print('\nResponse HTTP Response Body : {content}'.format(content=r.content))
     except requests.exceptions.RequestException as e:
         print('HTTP Request failed')
