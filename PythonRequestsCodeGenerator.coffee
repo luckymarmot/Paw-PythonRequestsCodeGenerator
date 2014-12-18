@@ -116,8 +116,9 @@ PythonRequestsCodeGenerator = ->
 
 
 PythonRequestsCodeGenerator.identifier =
-    "com.luckymarmot.PawExtensions.PythonRequestsCodeGenerator";
+    "com.luckymarmot.PawExtensions.PythonRequestsCodeGenerator"
 PythonRequestsCodeGenerator.title =
-    "Python (Requests)";
+    "Python (Requests)"
+PythonRequestsCodeGenerator.fileExtension = "py"
 
 registerCodeGenerator PythonRequestsCodeGenerator
