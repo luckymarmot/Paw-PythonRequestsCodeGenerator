@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/LuckyMarmot/Paw-PythonRequestsCodeGenerator.svg?branch=master)](https://travis-ci.org/LuckyMarmot/Paw-PythonRequestsCodeGenerator)
+[![Build Status](https://travis-ci.org/luckymarmot/Paw-PythonRequestsCodeGenerator.svg?branch=master)](https://travis-ci.org/luckymarmot/Paw-PythonRequestsCodeGenerator)
 
 # Python + Requests Code Generator (Paw Extension)
 
@@ -18,7 +18,7 @@ Copyright © 2014 Paw Inc.
 
 ## Contributors
 
-See [Contributors](https://github.com/LuckyMarmot/Paw-PythonRequestsCodeGenerator/graphs/contributors).
+See [Contributors](https://github.com/luckymarmot/Paw-PythonRequestsCodeGenerator/graphs/contributors).
 
 ## Credits
 
