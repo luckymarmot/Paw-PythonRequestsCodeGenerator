@@ -120,5 +120,6 @@ PythonRequestsCodeGenerator.identifier =
 PythonRequestsCodeGenerator.title =
     "Python (Requests)"
 PythonRequestsCodeGenerator.fileExtension = "py"
+PythonRequestsCodeGenerator.languageHighlighter = "python"
 
 registerCodeGenerator PythonRequestsCodeGenerator
