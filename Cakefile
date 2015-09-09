@@ -29,7 +29,12 @@ build_copy = () ->
     fs.writeFileSync "#{ build_dir }/LICENSE", fs.readFileSync("./LICENSE")
     fs.writeFileSync "#{ build_dir }/python.mustache", fs.readFileSync("./python.mustache")
     fs.writeFileSync "#{ build_dir }/mustache.js", fs.readFileSync("./node_modules/mustache/mustache.js")
-    fs.writeFileSync "#{ build_dir }/URI.js", fs.readFileSync("./node_modules/URIjs/src/URI.min.js")
+    fs.writeFileSync "#{ build_dir }/URI.js", fs.readFileSync("./node_modules/URIjs/src/URI.js")
+    fs.writeFileSync "#{ build_dir }/punycode.js", fs.readFileSync("./node_modules/URIjs/src/punycode.js")
+    fs.writeFileSync "#{ build_dir }/IPv6.js", fs.readFileSync("./node_modules/URIjs/src/IPv6.js")
+    fs.writeFileSync "#{ build_dir }/SecondLevelDomains.js", fs.readFileSync("./node_modules/URIjs/src/SecondLevelDomains.js")
+    # legacy
+    fs.writeFileSync "#{ build_dir }/URI.min.js", fs.readFileSync("./node_modules/URIjs/src/URI.min.js")
 
 # build: build CoffeeScript and copy files to build directory
 build = (callback) ->
