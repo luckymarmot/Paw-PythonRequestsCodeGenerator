@@ -6,51 +6,55 @@ import requests
 import json
 {{/body.has_json_body}}
 
+
 def send_request():
-    # {{{request.name}}} ({{{request.method}}} {{{url.base}}})
+    # {{{request.name}}}
+    # {{{request.method}}} {{{url.base}}}
 
     try:
-        r = requests.{{{method}}}(
+        response = requests.{{{method}}}(
             url="{{{url.base}}}",
         {{#url.has_params}}
-            params = {
+            params={
             {{#url.params}}
-                "{{{name}}}":"{{{value}}}",
+                "{{{name}}}": "{{{value}}}",
             {{/url.params}}
             },
             {{/url.has_params}}
             {{#headers.has_headers}}
-            headers = {
+            headers={
                 {{#headers.header_list}}
-                "{{{header_name}}}":"{{{header_value}}}",
+                "{{{header_name}}}": "{{{header_value}}}",
                 {{/headers.header_list}}
             },
             {{/headers.has_headers}}
             {{#body.has_raw_body}}
-            data = "{{{body.raw_body}}}"
+            data="{{{body.raw_body}}}"
             {{/body.has_raw_body}}
             {{#body.has_long_body}}
-            data = "" # set your body string
+            data=""  # set your body string
             {{/body.has_long_body}}
             {{#body.has_url_encoded_body}}
-            data = {
+            data={
             {{#body.url_encoded_body}}
-                "{{{name}}}":"{{{value}}}",
+                "{{{name}}}": "{{{value}}}",
             {{/body.url_encoded_body}}
             },
             {{/body.has_url_encoded_body}}
             {{#body.has_multipart_body}}
-            files = {
+            files={
             {{#body.multipart_body}}
-                "{{{name}}}":"{{{value}}}",
+                "{{{name}}}": "{{{value}}}",
             {{/body.multipart_body}}
             },
             {{/body.has_multipart_body}}
             {{#body.has_json_body}}
-            data = json.dumps({{{body.json_body_object}}})
+            data=json.dumps({{{body.json_body_object}}})
             {{/body.has_json_body}}
         )
-        print('Response HTTP Status Code   : {status_code}'.format(status_code=r.status_code))
-        print('Response HTTP Response Body : {content}'.format(content=r.content))
-    except requests.exceptions.RequestException as e:
+        print('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        print('Response HTTP Response Body: {content}'.format(
+            content=response.content))
+    except requests.exceptions.RequestException:
         print('HTTP Request failed')
